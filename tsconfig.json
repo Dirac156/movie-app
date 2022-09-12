@@ -11,5 +11,4 @@
     "lib": "ES2015",
     "include": ["server/src"],
     "exclude": ["node_modules", "pages", "public", "styles"]
-  }
-
+}
