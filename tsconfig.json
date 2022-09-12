@@ -9,6 +9,6 @@
         "outDir": "server/dist"
     },
     "lib": "ES2015",
-    "include": ["server/src"],
+    "include": ["server"],
     "exclude": ["node_modules", "pages", "public", "styles"]
 }
