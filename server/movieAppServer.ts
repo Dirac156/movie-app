@@ -4,7 +4,25 @@ import cors from "cors";
 import compression from 'compression';
 import * as uuid from 'uuid';
 
-import config from './config/appconfig';
+import appconfig from "./config/appconfig";
+
+const corsOptions = {
+    // allow GET, POST, PUT, DELETE Http verbs in the server
+    methods: appconfig.cors.methods,
+    allowedHeaders: appconfig.cors.allowedHeaders,
+    credentials: appconfig.cors.credentials,
+    maxAge: appconfig.cors.maxAge,
+    preflightContinue: appconfig.cors.preflightContinue,
+    optionsSuccessStatus: appconfig.cors.optionsSuccessStatus,
+    // allow only origins allowed by cors or our server's request
+    origin: (origin: string | undefined, callback: Function) => {
+        const whiteList = appconfig.cors.origin as Array<string>;
+        if (whiteList.indexOf(origin as string) !== -1 || !origin)
+            callback(null, true);
+        else 
+            callback(new Error('Not allowed by CORS'));
+    }
+}
 
 // create express server
 const app = express();
@@ -14,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // setup swapper for backend health and monitoring
 // const swagger = require('../utils/swagger');
@@ -25,7 +43,11 @@ process.on('SIGINT', () => {
 	process.exit();
 });
 
-app.set('port', config.app.port);
+app.set('port', appconfig.app.port);
+
+app.get("/", (req, res) => {
+    res.send("I am working")
+})
 
 // log successful request here
 
