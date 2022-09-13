@@ -1,7 +1,12 @@
+import Head from 'next/head'
+
 export default function Home() {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello Movie App</h1>
+      <Head>
+        <title>Movie App</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     </div>
   )
 }
