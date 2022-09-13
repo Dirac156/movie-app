@@ -7,6 +7,7 @@
 
  import http from 'http';
  import app from '../movieAppServer';
+import { connecToDb } from '../services/mongoose';
  
  /**
   * Create HTTP server.
@@ -84,6 +85,11 @@
   * Listen on provided port, on all network interfaces.
   */
  
- server.listen(port);
- server.on('error', onError);
- server.on('listening', onListening);
+ async function runServer() {
+    await connecToDb();
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+ }
+
+ runServer();

@@ -5,16 +5,13 @@ import { ContentSecurityPolicyOptions } from "helmet/dist/types/middlewares/cont
 import { CrossOriginOpenerPolicyOptions } from "helmet/dist/types/middlewares/cross-origin-opener-policy";
 import { CrossOriginResourcePolicyOptions } from "helmet/dist/types/middlewares/cross-origin-resource-policy";
 import { ReferrerPolicyOptions } from "helmet/dist/types/middlewares/referrer-policy";
+import { IApp, IDb } from "../interfaces/Iappconfig";
 config();
 
 // config.js
 const appconfig: {
-	app: {
-		port: string | number,
-		appName: string,
-		env: string
-	},
-	db: {},
+	app: IApp,
+	db: IDb,
 	winiston: {},
 	auth: {},
 	sendgrid: {},
