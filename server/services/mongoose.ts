@@ -5,7 +5,8 @@ const { database, username, password, host } = appconfig.db;
 
 export async function connecToDb() {
     await mongoose.connect(
-        `mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true&w=majority`
+        `mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true&w=majority`,
+        { autoIndex: false }
     )
 }
 

@@ -19,5 +19,6 @@ export interface IAuth {
 	saltRounds: string | number,
 	refresh_token_secret: string,
 	refresh_token_expiresin: string,
-	audience: string | string[]
+	audience: string | string[],
+	password_regex: string
 }

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateRefreshToken = exports.validateUserLogin = exports.validateUserSignUp = void 0;
 const joi_1 = __importDefault(require("joi"));
+const appconfig_1 = __importDefault(require("../config/appconfig"));
 const joi_2 = __importDefault(require("../services/joi"));
 const regex_1 = require("../utils/regex");
 const userSchema = joi_1.default.object({
@@ -19,7 +20,7 @@ const userLoginSchema = joi_1.default.object({
 const refreshTokenSchema = joi_1.default.object({
     token: joi_1.default.string().required()
 });
-const passwordValidator = (0, regex_1.validateRegex)('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+const passwordValidator = (0, regex_1.validateRegex)(appconfig_1.default.auth.password_regex);
 const userSchemaValidator = (0, joi_2.default)(userSchema);
 const userLoginSchemaValidator = (0, joi_2.default)(userLoginSchema);
 const refreshTokenSchemaValidator = (0, joi_2.default)(refreshTokenSchema);

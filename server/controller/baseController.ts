@@ -24,4 +24,8 @@ export default class BaseController {
     static async _create(data: object, modelName: Model<any>): Promise<IUser | null> {
         return await modelName.create(data);
     }
+
+    static async _find(filter: object | undefined, modelName: Model<any> ): Promise<IUser[] | null> {
+        return await modelName.find(filter || {});
+    }
 };

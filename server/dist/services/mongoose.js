@@ -18,7 +18,7 @@ const appconfig_1 = __importDefault(require("../config/appconfig"));
 const { database, username, password, host } = appconfig_1.default.db;
 function connecToDb() {
     return __awaiter(this, void 0, void 0, function* () {
-        yield mongoose_1.default.connect(`mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true&w=majority`);
+        yield mongoose_1.default.connect(`mongodb+srv://${username}:${password}@${host}/${database}?retryWrites=true&w=majority`, { autoIndex: false });
     });
 }
 exports.connecToDb = connecToDb;
