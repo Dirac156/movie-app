@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt_1 = __importDefault(require("bcrypt"));
 const baseController_1 = __importDefault(require("./baseController"));
 const user_model_1 = __importDefault(require("../model/user.model"));
+const jsonwebtoken_1 = __importDefault(require("../services/jsonwebtoken"));
+const bcrypt_1 = __importDefault(require("../services/bcrypt"));
 class AuthController extends baseController_1.default {
     /**
      * Authenticate a user into the system
@@ -29,10 +30,10 @@ class AuthController extends baseController_1.default {
                 const user = yield AuthController._findOne({ email }, user_model_1.default);
                 if (!user)
                     return res.status(401).json({ message: "Authentification failed! User doesn't exist" });
-                if (!(yield bcrypt_1.default.compare(password, user === null || user === void 0 ? void 0 : user.password)))
+                if (!(yield bcrypt_1.default.compare(password, user.password)))
                     return res.status(401).json({ message: "Autentification failed!" });
-                // generate jwt token for 30 days
-                res.status(200).json({ message: "Authentifiation was successful", data: user });
+                const token = yield jsonwebtoken_1.default.sign({ email, name: user.name }, undefined, undefined);
+                res.status(200).json({ message: "Authentifiation was successful", token });
             }
             catch (err) {
                 console.error(err);

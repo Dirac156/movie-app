@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
 import BaseController from "./baseController";
 import userModel from "../model/user.model";
+import JWT from "../services/jsonwebtoken";
 import { IUser } from "../interfaces/IUser";
+import bcrypt from "../services/bcrypt";
 
 
 export default class AuthController extends BaseController {
@@ -19,10 +20,11 @@ export default class AuthController extends BaseController {
             if (!user)
                 return res.status(401).json({ message: "Authentification failed! User doesn't exist" })
 
-            if (!await bcrypt.compare(password, user?.password as string))
+            if (!await bcrypt.compare(password, user.password))
                 return res.status(401).json({ message: "Autentification failed!"})
-            // generate jwt token for 30 days
-            res.status(200).json({ message: "Authentifiation was successful", data: user });
+
+            const token = await JWT.sign({ email, name: user.name }, undefined, undefined);
+            res.status(200).json({ message: "Authentifiation was successful", token });
         }catch(err) {
             console.error(err);
             return res.status(500).json({});
@@ -54,4 +56,30 @@ export default class AuthController extends BaseController {
             return res.status(500).json({});
         }
     }
+
+    /**
+     * 
+     * @param req 
+     * @param res 
+     */
+    // static async refreshToken(req: Request, res: Response) {
+	// 	try {
+	// 		const { token } = req.body;
+	// 		const tokenFromHeader = auth.getJwtToken(req);
+	// 		const user = jwt.decode(tokenFromHeader);
+
+	// 		if ((data.refreshToken) && (data.refreshToken in tokenList)) {
+	// 			// const token = jwt.sign({ user }, config.auth.jwt_secret, { expiresIn: config.auth.jwt_expiresin, algorithm: 'HS512' });
+	// 			// const response = {
+	// 			// 	token,
+	// 			// };
+	// 			// // update the token in the list
+	// 			// tokenList[data.refreshToken].token = token;
+	// 		} else {
+	// 			res.status(400).json({});
+	// 		}
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// }
 };

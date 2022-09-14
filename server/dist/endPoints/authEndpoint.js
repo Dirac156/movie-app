@@ -7,7 +7,7 @@ const express_1 = require("express");
 const authController_1 = __importDefault(require("../controller/authController"));
 const authMiddleware_1 = require("../middleware/authMiddleware");
 const authRouter = (0, express_1.Router)();
-authRouter.post("/login", authController_1.default.login);
+authRouter.post("/login", authMiddleware_1.validateUserLogin, authController_1.default.login);
 authRouter.post("/signup", authMiddleware_1.validateUserSignUp, authController_1.default.signUp);
 exports.default = authRouter;
 //# sourceMappingURL=authEndpoint.js.map

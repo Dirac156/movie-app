@@ -12,6 +12,10 @@ const userSchema = Joi.object({
 const userLoginSchema = Joi.object({
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required()
+});
+
+const refreshTokenSchema = Joi.object({
+    token: Joi.string().required()
 })
 
 const passwordValidator = validateRegex(
@@ -20,6 +24,7 @@ const passwordValidator = validateRegex(
 
 const userSchemaValidator = payloadValidator(userSchema);
 const userLoginSchemaValidator= payloadValidator(userLoginSchema);
+const refreshTokenSchemaValidator = payloadValidator(refreshTokenSchema);
 
 export function validateUserSignUp(req: Request, res: Response, next: NextFunction): void {
     try {
@@ -57,3 +62,18 @@ export function validateUserLogin(req: Request, res: Response, next: NextFunctio
     }
 }
 
+
+export function validateRefreshToken(req: Request, res: Response, next: NextFunction): void {
+    try {
+        // validate user input
+        const { error } = refreshTokenSchemaValidator(req.body);
+        if (error) {
+            res.status(400).json( error.details );
+            return;
+        }
+        next();
+    }catch(err) {
+        console.error(err);
+        res.status(500).json({});
+    }
+}

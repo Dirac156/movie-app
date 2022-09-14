@@ -5,7 +5,7 @@ import { ContentSecurityPolicyOptions } from "helmet/dist/types/middlewares/cont
 import { CrossOriginOpenerPolicyOptions } from "helmet/dist/types/middlewares/cross-origin-opener-policy";
 import { CrossOriginResourcePolicyOptions } from "helmet/dist/types/middlewares/cross-origin-resource-policy";
 import { ReferrerPolicyOptions } from "helmet/dist/types/middlewares/referrer-policy";
-import { IApp, IDb } from "../interfaces/IAppconfig";
+import { IApp, IAuth, IDb } from "../interfaces/IAppconfig";
 config();
 
 // config.js
@@ -13,7 +13,7 @@ const appconfig: {
 	app: IApp,
 	db: IDb,
 	winiston: {},
-	auth: {},
+	auth: IAuth,
 	sendgrid: {},
 	cors: CorsOptions,
 	helmet: HelmetOptions
@@ -34,11 +34,12 @@ const appconfig: {
 		logpath: '/movie-app/logs/',
 	},
 	auth: {
-		jwt_secret: process.env.JWT_SECRET,
+		jwt_secret: process.env.JWT_SECRET as string,
 		jwt_expiresin: process.env.JWT_EXPIRES_IN || '30d',
 		saltRounds: process.env.SALT_ROUND || 10,
 		refresh_token_secret: process.env.REFRESH_TOKEN_SECRET || 'VmVyeVBvd2VyZnVsbFNlY3JldA==',
 		refresh_token_expiresin: process.env.REFRESH_TOKEN_EXPIRES_IN || '2d', // 2 days
+		audience: process.env.JWT_AUDIENCE || "movie.app.user"
 	},
 	sendgrid: {
 		api_key: process.env.SEND_GRID_API_KEY,
