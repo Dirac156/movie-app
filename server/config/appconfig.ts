@@ -5,7 +5,7 @@ import { ContentSecurityPolicyOptions } from "helmet/dist/types/middlewares/cont
 import { CrossOriginOpenerPolicyOptions } from "helmet/dist/types/middlewares/cross-origin-opener-policy";
 import { CrossOriginResourcePolicyOptions } from "helmet/dist/types/middlewares/cross-origin-resource-policy";
 import { ReferrerPolicyOptions } from "helmet/dist/types/middlewares/referrer-policy";
-import { IApp, IDb } from "../interfaces/Iappconfig";
+import { IApp, IDb } from "../interfaces/IAppconfig";
 config();
 
 // config.js

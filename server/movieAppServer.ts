@@ -2,9 +2,10 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import compression from 'compression';
-import * as uuid from 'uuid';
 
+import api from "./endPoints";
 import appconfig from "./config/appconfig";
+
 
 const corsOptions = {
     // allow GET, POST, PUT, DELETE Http verbs in the server
@@ -45,13 +46,10 @@ process.on('SIGINT', () => {
 
 app.set('port', appconfig.app.port);
 
-app.get("/", (req, res) => {
-    res.send("I am working")
-})
-
 // log successful request here
 
 // setup routers
+app.use(api);
 
 // log unsuccessful requests here.
 

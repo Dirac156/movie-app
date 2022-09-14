@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const compression_1 = __importDefault(require("compression"));
+const endPoints_1 = __importDefault(require("./endPoints"));
 const appconfig_1 = __importDefault(require("./config/appconfig"));
 const corsOptions = {
     // allow GET, POST, PUT, DELETE Http verbs in the server
@@ -40,11 +41,9 @@ process.on('SIGINT', () => {
     process.exit();
 });
 app.set('port', appconfig_1.default.app.port);
-app.get("/", (req, res) => {
-    res.send("I am working");
-});
 // log successful request here
 // setup routers
+app.use(endPoints_1.default);
 // log unsuccessful requests here.
 exports.default = app;
 //# sourceMappingURL=movieAppServer.js.map

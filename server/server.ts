@@ -6,8 +6,8 @@
  */
 
  import http from 'http';
- import app from '../movieAppServer';
-import { connecToDb } from '../services/mongoose';
+ import app from './movieAppServer';
+import { connecToDb } from './services/mongoose';
  
  /**
   * Create HTTP server.
