@@ -32,8 +32,8 @@ class AuthController extends baseController_1.default {
                     return res.status(401).json({ message: "Authentification failed! User doesn't exist" });
                 if (!(yield bcrypt_1.default.compare(password, user.password)))
                     return res.status(401).json({ message: "Autentification failed!" });
-                const token = yield jsonwebtoken_1.default.sign({ email, name: user.name }, undefined, undefined);
-                res.status(200).json({ message: "Authentifiation was successful", token });
+                const token = yield jsonwebtoken_1.default.sign({ email }, undefined, undefined);
+                return res.status(200).json({ message: "Authentifiation was successful", token });
             }
             catch (err) {
                 console.error(err);

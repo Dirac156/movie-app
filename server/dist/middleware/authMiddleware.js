@@ -9,7 +9,6 @@ const appconfig_1 = __importDefault(require("../config/appconfig"));
 const joi_2 = __importDefault(require("../services/joi"));
 const regex_1 = require("../utils/regex");
 const userSchema = joi_1.default.object({
-    name: joi_1.default.string().min(1).required(),
     email: joi_1.default.string().email().required(),
     password: joi_1.default.string().min(8).required(),
 });

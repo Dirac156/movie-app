@@ -40,7 +40,9 @@ const appconfig: {
 		refresh_token_secret: process.env.REFRESH_TOKEN_SECRET || 'VmVyeVBvd2VyZnVsbFNlY3JldA==',
 		refresh_token_expiresin: process.env.REFRESH_TOKEN_EXPIRES_IN || '2d', // 2 days
 		audience: process.env.JWT_AUDIENCE || "movie.app.user",
-		password_regex: process.env.PASSWORD_REGEX || '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'
+		password_regex: process.env.PASSWORD_REGEX || '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})',
+		email_regex: process.env.EMAIL_REGEX || '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$',
+		name_regex: process.env.NAME_REGEX || '^[A-Za-z][A-Za-z0-9_]{7,29}$'
 	},
 	sendgrid: {
 		api_key: process.env.SEND_GRID_API_KEY,

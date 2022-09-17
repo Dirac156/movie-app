@@ -20,5 +20,7 @@ export interface IAuth {
 	refresh_token_secret: string,
 	refresh_token_expiresin: string,
 	audience: string | string[],
-	password_regex: string
+	password_regex: string,
+	email_regex: string,
+	name_regex: string
 }

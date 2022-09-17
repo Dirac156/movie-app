@@ -13,7 +13,7 @@ export default class AuthController extends BaseController {
      * @param res 
      * @returns 
      */
-    static async login(req: Request, res: Response): Promise<Response | void > {
+    static async login(req: Request, res: Response): Promise<Response> {
         try {
             const { email, password } = req.body;
             const user: IUser | null = await AuthController._findOne({ email }, userModel);
@@ -23,8 +23,8 @@ export default class AuthController extends BaseController {
             if (!await bcrypt.compare(password, user.password))
                 return res.status(401).json({ message: "Autentification failed!"})
 
-            const token = await JWT.sign({ email, name: user.name }, undefined, undefined);
-            res.status(200).json({ message: "Authentifiation was successful", token });
+            const token = await JWT.sign({ email }, undefined, undefined);
+            return res.status(200).json({ message: "Authentifiation was successful", token });
         }catch(err) {
             console.error(err);
             return res.status(500).json({});
@@ -38,7 +38,7 @@ export default class AuthController extends BaseController {
      * @returns The user created | Null in case nothing was created.
      */
     
-     static async signUp(req: Request, res: Response): Promise<void | Response> {
+     static async signUp(req: Request, res: Response): Promise<Response> {
         try {
             const { name, email, password } = req.body;
             if (await AuthController._findOne({ email }, userModel))
