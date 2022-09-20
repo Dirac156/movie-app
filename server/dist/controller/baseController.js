@@ -31,6 +31,11 @@ class BaseController {
             return yield modelName.create(data);
         });
     }
+    static _find(filter, modelName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield modelName.find(filter || {});
+        });
+    }
 }
 exports.default = BaseController;
 ;

@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
+import appconfig from "../config/appconfig";
 import payloadValidator from "../services/joi";
 import { validateRegex } from "../utils/regex";
 
 const userSchema = Joi.object({
-    name: Joi.string().min(1).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
 });
@@ -19,7 +19,7 @@ const refreshTokenSchema = Joi.object({
 })
 
 const passwordValidator = validateRegex(
-    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})'
+    appconfig.auth.password_regex
 );
 
 const userSchemaValidator = payloadValidator(userSchema);
