@@ -1,9 +1,14 @@
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { useState } from 'react'
 import Link from 'next/link'
+
 function Login() {
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className="h-screen w-full bg-darkBlue overflow-x-hidden">
       <div className="container mx-auto px-6">
-        <figure className="mt-11">
+        <figure className="mt-14">
           <svg
             width="33"
             height="27"
@@ -16,25 +21,37 @@ function Login() {
             />
           </svg>
         </figure>
-        <div className="card w-full bg-semiDarkBlue mt-12 ">
+        <div className="card w-full md:w-96 lg:w-96 mx-auto bg-semiDarkBlue mt-16 ">
           <div className="w-10/12 mx-auto my-6">
-            <h2 className="text-pureWhite text-4xl font-Outfit font-extralight mb-6">
+            <h2 className="text-pureWhite text-4xl font-Outfit font-extralight mb-5 mt-2">
               Login
             </h2>
-            <input
-              type="text"
-              placeholder="Email address"
-              className="input w-full max-w-xs mt-4 bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-thin"
-            />
-            <input
-              type="text"
-              placeholder="Password"
-              className="input w-full max-w-xs mt-4 bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-thin "
-            />
-            <button className="btn bg-tomatoRed w-full normal-case font-Outfit font-extralight mt-10 hover:text-semiDarkBlue hover:bg-pureWhite border-none">
-              Login to your account
-            </button>
-            <p className="text-center text-pureWhite font-Outfit font-extralight mt-4">
+            <form>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+                className="input w-full max-w-xs mt-4 text-greyishBlue font-extralight bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-extralight"
+              />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                placeholder="Password"
+                className="input relative w-full max-w-xs mt-4 text-greyishBlue font-extralight bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-extralight"
+              />
+              <span className="text-greyishBlue absolute top-1/2 bottom-1/2 right-9 cursor-pointer">
+                {showPassword ? (
+                  <FaEye onClick={() => setShowPassword(!showPassword)} />
+                ) : (
+                  <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
+                )}
+              </span>
+
+              <button className="btn bg-tomatoRed w-full normal-case font-Outfit font-extralight mt-10 hover:text-semiDarkBlue hover:bg-pureWhite border-none">
+                Login to your account
+              </button>
+            </form>
+            <p className="text-center text-pureWhite font-Outfit font-extralight mt-5 mb-2">
               Don't have an account?{' '}
               <span className="text-tomatoRed">
                 <Link href="/signup">Sign Up</Link>
