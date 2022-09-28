@@ -1,5 +1,10 @@
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { useState } from 'react'
 import Link from 'next/link'
-function Signup() {
+
+function Login() {
+  const [showPassword, setShowPassword] = useState(false)
+
   return (
     <div className="h-screen w-full bg-darkBlue overflow-x-hidden">
       <div className="container mx-auto px-6">
@@ -19,7 +24,7 @@ function Signup() {
         <div className="card w-full md:w-96 lg:w-96 mx-auto bg-semiDarkBlue mt-16 ">
           <div className="w-10/12 mx-auto my-6">
             <h2 className="text-pureWhite text-4xl font-Outfit font-extralight mb-5 mt-2">
-              Sign Up
+              Login
             </h2>
             <form>
               <input
@@ -29,24 +34,30 @@ function Signup() {
                 className="input w-full max-w-xs mt-4 text-greyishBlue font-extralight bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-extralight"
               />
               <input
-                type="text"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
                 placeholder="Password"
                 className="input relative w-full max-w-xs mt-4 text-greyishBlue font-extralight bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-extralight"
               />
-              <input
-                type="text"
-                placeholder="Repeat Password"
-                className="input relative w-full max-w-xs mt-4 text-greyishBlue font-extralight bg-transparent rounded-none caret-tomatoRed focus:text-pureWhite focus:font-extralight focus:outline-none border-x-0 border-t-0 border-b-1 border-greyishBlue focus:border-pureWhite placeholder:font-Outfit placeholder:text-pureWhite/50 placeholder:font-extralight"
-              />
-              <button className="btn bg-tomatoRed w-full normal-case font-Outfit font-extralight mt-10 hover:text-semiDarkBlue hover:bg-pureWhite border-none">
-                Create an account
+              <span className="text-greyishBlue absolute top-1/2 bottom-1/2 right-9 cursor-pointer">
+                {showPassword ? (
+                  <FaEyeSlash onClick={() => setShowPassword(!showPassword)} />
+                ) : (
+                  <FaEye onClick={() => setShowPassword(!showPassword)} />
+                )}
+              </span>
+
+              <button
+                type="submit"
+                className="btn bg-tomatoRed w-full normal-case font-Outfit font-extralight mt-10 hover:text-semiDarkBlue hover:bg-pureWhite border-none"
+              >
+                Login to your account
               </button>
             </form>
             <p className="text-center text-pureWhite font-Outfit font-extralight mt-5 mb-2">
-              Already have an account?{' '}
+              Don't have an account?{' '}
               <span className="text-tomatoRed">
-                <Link href="/login">Login</Link>
+                <Link href="/signup">Sign Up</Link>
               </span>
             </p>
           </div>
@@ -56,4 +67,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Login
