@@ -7,6 +7,7 @@
 /* Custom Styles Here */
 [data-theme='dark'] {
   background: #10141e;
+  min-height: 100vh;
 }
 *,
 *::before,
