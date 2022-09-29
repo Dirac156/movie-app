@@ -1,9 +1,9 @@
 import { server } from '../config'
 import { useState } from 'react'
 import useSWR from 'swr'
-import Shows from '../src/components/Shows'
 import Spinner from '../src/components/Spinner'
 import SearchBox from '../src/components/SearchBox'
+import Shows from '../src/components/Shows'
 
 export default function Home(props) {
   const [shows, setShows] = useState(props.shows)
@@ -36,7 +36,21 @@ export default function Home(props) {
             : 'Recommended for you'}
         </h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          <Shows shows={filteredShows.length ? filteredShows : shows} />
+          {filteredShows.map((movie, idx) => {
+            return (
+              <Shows
+                key={idx}
+                id={idx}
+                title={movie.title}
+                thumbnail={movie.thumbnail}
+                year={movie.year}
+                category={movie.category}
+                rating={movie.rating}
+                isBookmarked={movie.isBookmarked}
+                isTrending={movie.isTrending}
+              />
+            )
+          })}
         </div>
       </section>
     </>

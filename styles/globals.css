@@ -31,3 +31,7 @@ ul,
 figure {
   margin: 0;
 }
+
+path.active {
+  fill: white;
+}
