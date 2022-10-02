@@ -27,17 +27,17 @@ const Movies = (props) => {
   })
 
   return (
-    <>
+    <div className="lg:w-[90%] lg:absolute lg:right-0">
       <SearchBox searchText={searchText} setSearchText={setSearchText} />
-      <section className="container mx-auto px-4">
-        <h2 className="text-2xl font-light">
+      <section className="container mx-auto px-4 pb-10">
+        <h2 className="text-xl md:text-2xl lg:text-2xl font-Outfit font-extralight text-white my-6">
           {searchText
             ? `Found ${filterMovieList.length} result${
                 filterMovieList.length <= 1 ? '' : 's'
               } for "${searchText}"`
             : 'Movies'}
         </h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-4">
           {filterMovieList.map((movie, idx) => {
             return (
               <Shows
@@ -55,7 +55,7 @@ const Movies = (props) => {
           })}
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

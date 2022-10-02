@@ -1,12 +1,12 @@
 const SearchBox = ({ searchText, setSearchText }) => {
   return (
-    <section className="container mx-auto px-4">
+    <section className="container mx-auto px-4 my-8">
       <form>
         <div className="relative">
-          <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+          <div className="flex absolute inset-y-0 left-0 items-center pl-1 lg:pl-0 pointer-events-none">
             <svg
               aria-hidden="true"
-              className="w-5 h-5 text-gray-500 dark:text-gray-400"
+              className="w-6 h-6 md:w-7 md:h-7 text-white dark:text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -24,7 +24,7 @@ const SearchBox = ({ searchText, setSearchText }) => {
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
             type="text"
-            className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block lg:pl-11 md:pl-12 pl-11 w-[78%] text-base bg-transparent text-white border-0 outline-none caret-tomatoRed placeholder:font-Outfit placeholder:text-white/40 font-extralight placeholder:text-[16px] placeholder:md:text-xl"
             placeholder="Search for movies or TV series"
           />
         </div>

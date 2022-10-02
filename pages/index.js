@@ -25,35 +25,37 @@ export default function Home(props) {
   })
 
   return (
-    <>
-      <SearchBox searchText={searchText} setSearchText={setSearchText} />
-      <section className="container mx-auto px-4">
-        <h2 className="text-2xl font-light">
-          {searchText
-            ? `Found ${filteredShows.length} result${
-                filteredShows.length <= 1 ? '' : 's'
-              } for "${searchText}"`
-            : 'Recommended for you'}
-        </h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {filteredShows.map((movie, idx) => {
-            return (
-              <Shows
-                key={idx}
-                id={idx}
-                title={movie.title}
-                thumbnail={movie.thumbnail}
-                year={movie.year}
-                category={movie.category}
-                rating={movie.rating}
-                isBookmarked={movie.isBookmarked}
-                isTrending={movie.isTrending}
-              />
-            )
-          })}
-        </div>
-      </section>
-    </>
+    <div className="relative lg:h-[2200px] ">
+      <div className="lg:w-[90%] lg:absolute lg:right-0">
+        <SearchBox searchText={searchText} setSearchText={setSearchText} />
+        <section className="container mx-auto pb-10 px-4">
+          <h2 className="text-xl md:text-2xl lg:text-2xl font-Outfit font-extralight text-white my-6">
+            {searchText
+              ? `Found ${filteredShows.length} result${
+                  filteredShows.length <= 1 ? '' : 's'
+                } for "${searchText}"`
+              : 'Recommended for you'}
+          </h2>
+          <div className="grid grid-cols-2 gap-4 md:gap-6 md:grid-cols-3 lg:grid-cols-4">
+            {filteredShows.map((show, idx) => {
+              return (
+                <Shows
+                  key={idx}
+                  id={idx}
+                  title={show.title}
+                  thumbnail={show.thumbnail}
+                  year={show.year}
+                  category={show.category}
+                  rating={show.rating}
+                  isBookmarked={show.isBookmarked}
+                  isTrending={show.isTrending}
+                />
+              )
+            })}
+          </div>
+        </section>
+      </div>
+    </div>
   )
 }
 

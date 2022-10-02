@@ -5,7 +5,9 @@ const Layout = ({ children }) => {
     <div data-theme="dark">
       <Meta />
       <div>
-        <Nav />
+        <header className="md:pt-5">
+          <Nav />
+        </header>
         <main>{children}</main>
       </div>
     </div>
