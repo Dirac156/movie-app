@@ -107,7 +107,7 @@ const Nav = () => {
                 className="btn btn-ghost btn-circle avatar hover:bg-transparent"
               >
                 <div className="w-9 rounded-full border border-white">
-                  <img src="https://placeimg.com/80/80/people" />
+                  <img src="https://placeimg.com/80/80/people" alt="profile" />
                 </div>
               </label>
               {/* <ul
